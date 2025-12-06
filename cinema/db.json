@@ -1,0 +1,113 @@
+{
+  "filmes": [
+    {
+      "id": "409c",
+      "titulo": "Homem De Ferro 3",
+      "sinopse": "Tony Stark luta contra vários inimigos",
+      "classificacao": "18 Anos",
+      "duracao": 240,
+      "elenco": "Tony, Peper e outros",
+      "genero": "Ficção Científica",
+      "dataInicioExibicao": "2025-12-06",
+      "dataFinalExibicao": "2025-12-13"
+    },
+    {
+      "id": "01aa",
+      "titulo": "Homem aranha de volta para casa ",
+      "sinopse": "O homem aranha tenta voltar para casa ",
+      "classificacao": "Livre ",
+      "duracao": 120,
+      "elenco": "Piter",
+      "genero": "Comédia",
+      "dataInicioExibicao": "2025-12-13",
+      "dataFinalExibicao": "2026-01-02"
+    }
+  ],
+  "salas": [
+    {
+      "id": "858c",
+      "numero": 12,
+      "capacidade": 120
+    },
+    {
+      "id": "92cb",
+      "numero": 3,
+      "capacidade": 12
+    },
+    {
+      "id": "bf80",
+      "numero": 1,
+      "capacidade": 22
+    }
+  ],
+  "sessoes": [
+    {
+      "id": "3804",
+      "horarioExibicao": "2025-12-09T01:08",
+      "filmeId": null,
+      "salaId": "92cb"
+    },
+    {
+      "id": "b292",
+      "horarioExibicao": "2025-12-26T23:58",
+      "filmeId": "409c",
+      "salaId": "858c"
+    },
+    {
+      "id": "babf",
+      "horarioExibicao": "2025-12-18T01:25",
+      "filmeId": "01aa",
+      "salaId": "bf80"
+    }
+  ],
+  "ingressos": [
+    {
+      "id": "5609",
+      "tipo": "Inteira",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": 3804,
+      "valorFinal": 20
+    },
+    {
+      "id": "70ae",
+      "tipo": "Inteira",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": 3804,
+      "valorFinal": 20
+    },
+    {
+      "id": "08c0",
+      "tipo": "Inteira",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": 3804,
+      "valorFinal": 20
+    },
+    {
+      "id": "2433",
+      "tipo": "Inteira",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": "b292",
+      "valorFinal": 20
+    },
+    {
+      "id": "f5e1",
+      "tipo": "Inteira",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": "babf",
+      "valorFinal": 20
+    },
+    {
+      "id": "efb4",
+      "tipo": "Meia",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": "babf",
+      "valorFinal": 10
+    }
+  ]
+}
