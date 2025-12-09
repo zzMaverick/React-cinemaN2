@@ -214,6 +214,7 @@ export const PedidoForm = () => {
                         <table className="table table-sm">
                           <thead>
                             <tr>
+                              <th>ID</th>
                               <th>Tipo</th>
                               <th>Valor</th>
                               <th>Sessão ID</th>
@@ -223,6 +224,9 @@ export const PedidoForm = () => {
                           <tbody>
                             {ingressosDisponiveis.map((ingresso) => (
                               <tr key={ingresso.id}>
+                                <td>
+                                  <small className="text-muted">{ingresso.id || 'N/A'}</small>
+                                </td>
                                 <td>
                                   <span className={`badge ${ingresso.tipo === 'Inteira' ? 'bg-primary' : 'bg-success'}`}>
                                     {ingresso.tipo}
@@ -257,7 +261,7 @@ export const PedidoForm = () => {
                                 <span className={`badge ${ingresso.tipo === 'Inteira' ? 'bg-primary' : 'bg-success'} me-2`}>
                                   {ingresso.tipo}
                                 </span>
-                                R$ {ingresso.valorFinal.toFixed(2)} - Sessão {ingresso.sessaoId}
+                                <strong>ID: {ingresso.id || 'N/A'}</strong> - R$ {ingresso.valorFinal.toFixed(2)} - Sessão {ingresso.sessaoId}
                               </div>
                               <button
                                 type="button"

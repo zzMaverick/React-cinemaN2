@@ -12,26 +12,15 @@
       "dataFinalExibicao": "2025-12-13"
     },
     {
-      "id": "01aa",
-      "titulo": "Homem aranha de volta para casa ",
-      "sinopse": "O homem aranha tenta voltar para casa ",
-      "classificacao": "Livre ",
+      "id": "4d2e",
+      "titulo": "Filme1",
+      "sinopse": "Filme 1 deve ter 10 caracteres",
+      "classificacao": "livre",
       "duracao": 120,
-      "elenco": "Piter",
-      "genero": "Comédia",
-      "dataInicioExibicao": "2025-12-13",
-      "dataFinalExibicao": "2026-01-02"
-    },
-    {
-      "id": "38c9",
-      "titulo": "Teste",
-      "sinopse": "Teste, Teste,",
-      "classificacao": "18 anos ",
-      "duracao": 120,
-      "elenco": "Teste, Teste",
-      "genero": "Comédia",
-      "dataInicioExibicao": "2025-12-20",
-      "dataFinalExibicao": "2026-01-02"
+      "elenco": "Teste, Teste 1 ",
+      "genero": "Ação",
+      "dataInicioExibicao": "2025-12-09",
+      "dataFinalExibicao": "2025-12-10"
     }
   ],
   "salas": [
@@ -67,14 +56,20 @@
     {
       "id": "babf",
       "horarioExibicao": "2025-12-18T01:25",
-      "filmeId": "01aa",
+      "filmeId": null,
       "salaId": "bf80"
     },
     {
       "id": "1ad2",
       "horarioExibicao": "2025-12-26T14:54",
-      "filmeId": "38c9",
+      "filmeId": null,
       "salaId": "858c"
+    },
+    {
+      "id": "dc17",
+      "horarioExibicao": "2025-12-24T15:11",
+      "filmeId": "4d2e",
+      "salaId": "92cb"
     }
   ],
   "ingressos": [
@@ -133,6 +128,30 @@
       "valorMeia": 10,
       "sessaoId": "1ad2",
       "valorFinal": 10
+    },
+    {
+      "id": "00ef",
+      "tipo": "Meia",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": "dc17",
+      "valorFinal": 10
+    },
+    {
+      "id": "fa3e",
+      "tipo": "Meia",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": "dc17",
+      "valorFinal": 10
+    },
+    {
+      "id": "8cfa",
+      "tipo": "Meia",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": "dc17",
+      "valorFinal": 10
     }
   ],
   "lancheCombos": [
@@ -145,5 +164,32 @@
       "subtotal": 310
     }
   ],
-  "pedidos": []
+  "pedidos": [
+    {
+      "id": "516d",
+      "qtInteira": 0,
+      "qtMeia": 1,
+      "ingresso": [
+        {
+          "id": "8cfa",
+          "tipo": "Meia",
+          "valorInteira": 20,
+          "valorMeia": 10,
+          "sessaoId": "dc17",
+          "valorFinal": 10
+        }
+      ],
+      "lanche": [
+        {
+          "id": "f7e3",
+          "nome": "Combo teset",
+          "descricao": "Combo",
+          "valorUnitario": 310,
+          "qtUnidade": 1,
+          "subtotal": 310
+        }
+      ],
+      "valorTotal": 320
+    }
+  ]
 }

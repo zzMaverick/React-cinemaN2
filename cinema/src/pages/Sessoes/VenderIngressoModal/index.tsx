@@ -70,7 +70,7 @@ export const VenderIngressoModal = ({
       
       const valorFinal = calcularValorFinal(validatedData.tipo as TipoIngressoType);
       
-      await ingressoService.create({
+      const ingressoCriado = await ingressoService.create({
         ...validatedData,
         tipo: validatedData.tipo as TipoIngressoType,
         valorFinal,
@@ -79,8 +79,9 @@ export const VenderIngressoModal = ({
       const tipoIngressoTexto = validatedData.tipo === TipoIngresso.INTEIRA ? 'Inteira' : 'Meia';
       const filmeNome = sessao.filme?.titulo || 'N/A';
       const salaNumero = sessao.sala?.numero || 'N/A';
+      const ingressoId = ingressoCriado.id || 'N/A';
       
-      alert(`Ingresso ${tipoIngressoTexto} vendido com sucesso!\n\nValor: R$ ${valorFinal.toFixed(2)}\nSessão: ${filmeNome} - Sala ${salaNumero}`);
+      alert(`Ingresso ${tipoIngressoTexto} vendido com sucesso!\n\nID: ${ingressoId}\nValor: R$ ${valorFinal.toFixed(2)}\nSessão: ${filmeNome} - Sala ${salaNumero}`);
       
       setTimeout(() => {
         onSuccess();
