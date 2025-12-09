@@ -46,6 +46,12 @@ export const Nav = () => {
                   Sessões
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to="/pedidos" className="nav-link">
+                  <i className="bi bi-cart me-1"></i>
+                  Pedidos
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

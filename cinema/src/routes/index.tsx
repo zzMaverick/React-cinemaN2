@@ -6,6 +6,8 @@ import { SalasList } from "../pages/Salas/SalasList";
 import { SalaForm } from "../pages/Salas/SalaForm";
 import { SessoesList } from "../pages/Sessoes/SessoesList";
 import { SessaoForm } from "../pages/Sessoes/SessaoForm";
+import { PedidosList } from "../pages/Pedidos/PedidosList";
+import { PedidoForm } from "../pages/Pedidos/PedidoForm";
 
 export const AppRouter = () => {
   return (
@@ -18,6 +20,8 @@ export const AppRouter = () => {
         <Route path="/salas/novo" element={<SalaForm />} />
         <Route path="/sessoes" element={<SessoesList />} />
         <Route path="/sessoes/novo" element={<SessaoForm />} />
+        <Route path="/pedidos" element={<PedidosList />} />
+        <Route path="/pedidos/novo" element={<PedidoForm />} />
       </Routes>
     </>
   );
