@@ -1,1018 +1,127 @@
 {
-  "filmes": [
-    {
-      "id": "409c",
-      "titulo": "Homem De Ferro 3",
-      "sinopse": "Tony Stark luta contra vários inimigos",
-      "classificacao": "18 Anos",
-      "duracao": 240,
-      "elenco": "Tony, Peper e outros",
-      "genero": "Ficção Científica",
-      "dataInicioExibicao": "2025-12-06",
-      "dataFinalExibicao": "2025-12-13"
-    },
-    {
-      "id": "4d2e",
-      "titulo": "Filme1",
-      "sinopse": "Filme 1 deve ter 10 caracteres",
-      "classificacao": "livre",
-      "duracao": 120,
-      "elenco": "Teste, Teste 1 ",
-      "genero": "Ação",
-      "dataInicioExibicao": "2025-12-09",
-      "dataFinalExibicao": "2025-12-10"
-    },
-    {
-      "id": "8944",
-      "titulo": "Filme criado para testar o site",
-      "sinopse": "Teste dos caracteres",
-      "classificacao": "Livre",
-      "duracao": 120,
-      "elenco": "Eu",
-      "genero": "Drama",
-      "dataInicioExibicao": "2025-12-08",
-      "dataFinalExibicao": "2025-12-10"
-    }
-  ],
+  "filmes": [],
   "salas": [
     {
-      "id": "858c",
-      "numero": 12,
-      "capacidade": 120
-    },
-    {
-      "id": "92cb",
-      "numero": 3,
-      "capacidade": 12
-    },
-    {
-      "id": "bf80",
+      "id": "acb5",
       "numero": 1,
-      "capacidade": 22
+      "capacidade": 30
     },
     {
-      "id": "05f2",
-      "numero": 144,
-      "capacidade": 35
+      "numero": 2,
+      "capacidade": 45,
+      "id": "e8d7"
     }
   ],
   "sessoes": [
     {
-      "id": "3804",
-      "horarioExibicao": "2025-12-09T01:08",
+      "id": "f6c2",
+      "horarioExibicao": "2025-12-18T12:36",
       "filmeId": null,
-      "salaId": "92cb"
-    },
-    {
-      "id": "b292",
-      "horarioExibicao": "2025-12-26T23:58",
-      "filmeId": "409c",
-      "salaId": "858c"
-    },
-    {
-      "id": "babf",
-      "horarioExibicao": "2025-12-18T01:25",
-      "filmeId": null,
-      "salaId": "bf80"
-    },
-    {
-      "id": "1ad2",
-      "horarioExibicao": "2025-12-26T14:54",
-      "filmeId": null,
-      "salaId": "858c"
-    },
-    {
-      "id": "dc17",
-      "horarioExibicao": "2025-12-24T15:11",
-      "filmeId": "4d2e",
-      "salaId": "92cb"
-    },
-    {
-      "id": "117b",
-      "horarioExibicao": "2025-12-16T16:00",
-      "filmeId": "8944",
-      "salaId": "05f2"
+      "salaId": "e8d7"
     }
   ],
   "ingressos": [
     {
-      "id": "5609",
+      "id": "834a",
       "tipo": "Inteira",
       "valorInteira": 20,
       "valorMeia": 10,
-      "sessaoId": 3804,
-      "valorFinal": 20
+      "sessaoId": "43b0",
+      "valorFinal": 20,
+      "assentoLinha": 6,
+      "assentoColuna": 2
     },
     {
-      "id": "70ae",
+      "id": "9ade",
       "tipo": "Inteira",
       "valorInteira": 20,
       "valorMeia": 10,
-      "sessaoId": 3804,
-      "valorFinal": 20
+      "sessaoId": "43b0",
+      "valorFinal": 20,
+      "assentoLinha": 6,
+      "assentoColuna": 4
     },
     {
-      "id": "08c0",
+      "id": "28a8",
       "tipo": "Inteira",
       "valorInteira": 20,
       "valorMeia": 10,
-      "sessaoId": 3804,
-      "valorFinal": 20
+      "sessaoId": "43b0",
+      "valorFinal": 20,
+      "assentoLinha": 5,
+      "assentoColuna": 3
     },
     {
-      "id": "2433",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "b292",
-      "valorFinal": 20
-    },
-    {
-      "id": "f5e1",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "babf",
-      "valorFinal": 20
-    },
-    {
-      "id": "efb4",
+      "id": "17d7",
       "tipo": "Meia",
       "valorInteira": 20,
       "valorMeia": 10,
-      "sessaoId": "babf",
-      "valorFinal": 10
+      "sessaoId": "43b0",
+      "valorFinal": 10,
+      "assentoLinha": 5,
+      "assentoColuna": 1
     },
     {
-      "id": "3021",
+      "id": "fafd",
+      "tipo": "Inteira",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": "43b0",
+      "valorFinal": 20,
+      "assentoLinha": 6,
+      "assentoColuna": 1
+    },
+    {
+      "id": "bad2",
+      "tipo": "Inteira",
+      "valorInteira": 20,
+      "valorMeia": 10,
+      "sessaoId": "43b0",
+      "valorFinal": 20,
+      "assentoLinha": 5,
+      "assentoColuna": 4
+    },
+    {
+      "id": "0409",
       "tipo": "Meia",
       "valorInteira": 20,
       "valorMeia": 10,
-      "sessaoId": "1ad2",
-      "valorFinal": 10
+      "sessaoId": "43b0",
+      "valorFinal": 10,
+      "assentoLinha": 5,
+      "assentoColuna": 2
     },
     {
-      "id": "00ef",
+      "id": "355d",
       "tipo": "Meia",
       "valorInteira": 20,
       "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 10
+      "sessaoId": "43b0",
+      "valorFinal": 10,
+      "assentoLinha": 6,
+      "assentoColuna": 3
     },
     {
-      "id": "fa3e",
+      "id": "a968",
       "tipo": "Meia",
       "valorInteira": 20,
       "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 10
-    },
-    {
-      "id": "8cfa",
-      "tipo": "Meia",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 10
-    },
-    {
-      "id": "10a8",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "78f9",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "b99d",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "7e2b",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "9200",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "7045",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "9dcd",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "0db4",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "fef4",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "eeb7",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "cf2f",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "debf",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "96bc",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "dc17",
-      "valorFinal": 20
-    },
-    {
-      "id": "4227",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "b292",
-      "valorFinal": 20
-    },
-    {
-      "id": "34e2",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "3804",
-      "valorFinal": 20
-    },
-    {
-      "id": "49aa",
-      "tipo": "Meia",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "3804",
-      "valorFinal": 10
-    },
-    {
-      "id": "817f",
-      "tipo": "Meia",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "3804",
-      "valorFinal": 10
-    },
-    {
-      "id": "befd",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "117b",
-      "valorFinal": 20
-    },
-    {
-      "id": "aa76",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "117b",
-      "valorFinal": 20
-    },
-    {
-      "id": "8168",
-      "tipo": "Meia",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "117b",
-      "valorFinal": 10
-    },
-    {
-      "id": "8a54",
-      "tipo": "Meia",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "117b",
-      "valorFinal": 10
-    },
-    {
-      "id": "ed22",
-      "tipo": "Inteira",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "3804",
-      "valorFinal": 20
-    },
-    {
-      "id": "3b1c",
-      "tipo": "Meia",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "3804",
-      "valorFinal": 10
-    },
-    {
-      "id": "d2b8",
-      "tipo": "Meia",
-      "valorInteira": 20,
-      "valorMeia": 10,
-      "sessaoId": "3804",
-      "valorFinal": 10
+      "sessaoId": "f6c2",
+      "valorFinal": 10,
+      "assentoLinha": 3,
+      "assentoColuna": 4
     }
   ],
   "lancheCombos": [
     {
-      "nome": "Combo teste",
-      "descricao": "Combo de testes ",
-      "valorUnitario": 75,
-      "qtUnidade": 300,
-      "qtDisponivel": 298,
-      "subtotal": 22500,
-      "id": "a2e9"
-    },
-    {
-      "nome": "Combo 1/10",
-      "descricao": "Combo 10 unidades",
-      "valorUnitario": 24,
-      "qtUnidade": 10,
+      "nome": "X-Tudo",
+      "descricao": "Vem tudo",
+      "valorUnitario": 30,
+      "qtUnidade": 1,
       "qtDisponivel": 0,
-      "subtotal": 240,
-      "id": "84c2"
-    },
-    {
-      "nome": "Combo X tudo ",
-      "descricao": "Combo X tudo vem com tudo ",
-      "valorUnitario": 34,
-      "qtUnidade": 32,
-      "qtDisponivel": 31,
-      "subtotal": 1088,
-      "id": "00c0"
+      "subtotal": 30,
+      "id": "ec8d"
     }
   ],
-  "pedidos": [
-    {
-      "id": "e2b1",
-      "qtInteira": 1,
-      "qtMeia": 0,
-      "ingresso": [
-        {
-          "id": "fef4",
-          "tipo": "Inteira",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "dc17",
-          "valorFinal": 20
-        }
-      ],
-      "lanche": [
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        }
-      ],
-      "valorTotal": 260
-    },
-    {
-      "id": "06f8",
-      "qtInteira": 1,
-      "qtMeia": 0,
-      "ingresso": [
-        {
-          "id": "eeb7",
-          "tipo": "Inteira",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "dc17",
-          "valorFinal": 20
-        }
-      ],
-      "lanche": [
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        }
-      ],
-      "valorTotal": 260
-    },
-    {
-      "id": "a61a",
-      "qtInteira": 1,
-      "qtMeia": 0,
-      "ingresso": [
-        {
-          "id": "cf2f",
-          "tipo": "Inteira",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "dc17",
-          "valorFinal": 20
-        }
-      ],
-      "lanche": [
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        }
-      ],
-      "valorTotal": 236
-    },
-    {
-      "id": "3878",
-      "qtInteira": 1,
-      "qtMeia": 0,
-      "ingresso": [
-        {
-          "id": "debf",
-          "tipo": "Inteira",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "dc17",
-          "valorFinal": 20
-        }
-      ],
-      "lanche": [
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        }
-      ],
-      "valorTotal": 236
-    },
-    {
-      "id": "52d5",
-      "qtInteira": 1,
-      "qtMeia": 0,
-      "ingresso": [
-        {
-          "id": "4227",
-          "tipo": "Inteira",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "b292",
-          "valorFinal": 20
-        }
-      ],
-      "lanche": [
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        },
-        {
-          "id": "84c2",
-          "nome": "Combo 1/10",
-          "descricao": "Combo 10 unidades",
-          "valorUnitario": 24,
-          "qtUnidade": 1,
-          "subtotal": 24,
-          "qtDisponivel": 10
-        }
-      ],
-      "valorTotal": 260
-    },
-    {
-      "id": "e170",
-      "qtInteira": 2,
-      "qtMeia": 2,
-      "ingresso": [
-        {
-          "id": "befd",
-          "tipo": "Inteira",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "117b",
-          "valorFinal": 20
-        },
-        {
-          "id": "aa76",
-          "tipo": "Inteira",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "117b",
-          "valorFinal": 20
-        },
-        {
-          "id": "8168",
-          "tipo": "Meia",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "117b",
-          "valorFinal": 10
-        },
-        {
-          "id": "8a54",
-          "tipo": "Meia",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "117b",
-          "valorFinal": 10
-        }
-      ],
-      "lanche": [
-        {
-          "nome": "Combo teste",
-          "descricao": "Combo de testes ",
-          "valorUnitario": 75,
-          "qtUnidade": 1,
-          "qtDisponivel": 299,
-          "subtotal": 75,
-          "id": "a2e9"
-        }
-      ],
-      "valorTotal": 135
-    },
-    {
-      "id": "e5e3",
-      "qtInteira": 1,
-      "qtMeia": 2,
-      "ingresso": [
-        {
-          "id": "ed22",
-          "tipo": "Inteira",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "3804",
-          "valorFinal": 20
-        },
-        {
-          "id": "3b1c",
-          "tipo": "Meia",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "3804",
-          "valorFinal": 10
-        },
-        {
-          "id": "d2b8",
-          "tipo": "Meia",
-          "valorInteira": 20,
-          "valorMeia": 10,
-          "sessaoId": "3804",
-          "valorFinal": 10
-        }
-      ],
-      "lanche": [
-        {
-          "id": "00c0",
-          "nome": "Combo X tudo ",
-          "descricao": "Combo X tudo vem com tudo ",
-          "valorUnitario": 34,
-          "qtUnidade": 1,
-          "subtotal": 34,
-          "qtDisponivel": 32
-        }
-      ],
-      "valorTotal": 74
-    }
-  ]
+  "pedidos": []
 }

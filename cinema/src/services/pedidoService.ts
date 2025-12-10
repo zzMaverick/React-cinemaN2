@@ -4,91 +4,91 @@ import type {Ingresso} from '../models/Ingresso';
 import type {LancheCombo} from '../models/LancheCombo';
 
 export const pedidoService = {
-    getAll: async (): Promise<Pedido[]> => {
-        const response = await api.get<Pedido[]>('/pedidos');
-        return response.data;
-    },
+	getAll: async (): Promise<Pedido[]> => {
+		const response = await api.get<Pedido[]>('/pedidos');
+		return response.data;
+	},
 
-    getById: async (id: number | string): Promise<Pedido> => {
-        const response = await api.get<Pedido>(`/pedidos/${id}`);
-        return response.data;
-    },
+	getById: async (id: number | string): Promise<Pedido> => {
+		const response = await api.get<Pedido>(`/pedidos/${id}`);
+		return response.data;
+	},
 
-    create: async (pedido: Omit<Pedido, 'id' | 'valorTotal'>): Promise<Pedido> => {
+	create: async (pedido: Omit<Pedido, 'id' | 'valorTotal'>): Promise<Pedido> => {
 
-        const valorTotal = calcularValorTotal(pedido);
-        const response = await api.post<Pedido>('/pedidos', {
-            ...pedido,
-            valorTotal,
-        });
-        return response.data;
-    },
+		const valorTotal = calcularValorTotal(pedido);
+		const response = await api.post<Pedido>('/pedidos', {
+			...pedido,
+			valorTotal,
+		});
+		return response.data;
+	},
 
-    update: async (id: number | string, pedido: Partial<Pedido>): Promise<Pedido> => {
-        const valorTotal = calcularValorTotal(pedido as Pedido);
-        const response = await api.put<Pedido>(`/pedidos/${id}`, {
-            ...pedido,
-            valorTotal,
-        });
-        return response.data;
-    },
+	update: async (id: number | string, pedido: Partial<Pedido>): Promise<Pedido> => {
+		const valorTotal = calcularValorTotal(pedido as Pedido);
+		const response = await api.put<Pedido>(`/pedidos/${id}`, {
+			...pedido,
+			valorTotal,
+		});
+		return response.data;
+	},
 
-    delete: async (id: number | string): Promise<void> => {
-        await api.delete(`/pedidos/${id}`);
-    },
+	delete: async (id: number | string): Promise<void> => {
+		await api.delete(`/pedidos/${id}`);
+	},
 
-    adicionarIngresso: async (pedidoId: number | string, ingresso: Ingresso): Promise<Pedido> => {
-        const pedido = await pedidoService.getById(pedidoId);
-        const novosIngressos = [...pedido.ingresso, ingresso];
-        const qtInteira = novosIngressos.filter(i => i.tipo === 'Inteira').length;
-        const qtMeia = novosIngressos.filter(i => i.tipo === 'Meia').length;
+	adicionarIngresso: async (pedidoId: number | string, ingresso: Ingresso): Promise<Pedido> => {
+		const pedido = await pedidoService.getById(pedidoId);
+		const novosIngressos = [...pedido.ingresso, ingresso];
+		const qtInteira = novosIngressos.filter(i => i.tipo === 'Inteira').length;
+		const qtMeia = novosIngressos.filter(i => i.tipo === 'Meia').length;
 
-        return pedidoService.update(pedidoId, {
-            ...pedido,
-            ingresso: novosIngressos,
-            qtInteira,
-            qtMeia,
-        });
-    },
+		return pedidoService.update(pedidoId, {
+			...pedido,
+			ingresso: novosIngressos,
+			qtInteira,
+			qtMeia,
+		});
+	},
 
-    removerIngresso: async (pedidoId: number | string, ingressoId: number | string): Promise<Pedido> => {
-        const pedido = await pedidoService.getById(pedidoId);
-        const novosIngressos = pedido.ingresso.filter(i => i.id !== ingressoId);
-        const qtInteira = novosIngressos.filter(i => i.tipo === 'Inteira').length;
-        const qtMeia = novosIngressos.filter(i => i.tipo === 'Meia').length;
+	removerIngresso: async (pedidoId: number | string, ingressoId: number | string): Promise<Pedido> => {
+		const pedido = await pedidoService.getById(pedidoId);
+		const novosIngressos = pedido.ingresso.filter(i => i.id !== ingressoId);
+		const qtInteira = novosIngressos.filter(i => i.tipo === 'Inteira').length;
+		const qtMeia = novosIngressos.filter(i => i.tipo === 'Meia').length;
 
-        return pedidoService.update(pedidoId, {
-            ...pedido,
-            ingresso: novosIngressos,
-            qtInteira,
-            qtMeia,
-        });
-    },
+		return pedidoService.update(pedidoId, {
+			...pedido,
+			ingresso: novosIngressos,
+			qtInteira,
+			qtMeia,
+		});
+	},
 
-    adicionaLanche: async (pedidoId: number | string, lanche: LancheCombo): Promise<Pedido> => {
-        const pedido = await pedidoService.getById(pedidoId);
-        const novosLanches = [...pedido.lanche, lanche];
+	adicionaLanche: async (pedidoId: number | string, lanche: LancheCombo): Promise<Pedido> => {
+		const pedido = await pedidoService.getById(pedidoId);
+		const novosLanches = [...pedido.lanche, lanche];
 
-        return pedidoService.update(pedidoId, {
-            ...pedido,
-            lanche: novosLanches,
-        });
-    },
+		return pedidoService.update(pedidoId, {
+			...pedido,
+			lanche: novosLanches,
+		});
+	},
 
-    removerLanche: async (pedidoId: number | string, lancheId: number | string): Promise<Pedido> => {
-        const pedido = await pedidoService.getById(pedidoId);
-        const novosLanches = pedido.lanche.filter(l => l.id !== lancheId);
+	removerLanche: async (pedidoId: number | string, lancheId: number | string): Promise<Pedido> => {
+		const pedido = await pedidoService.getById(pedidoId);
+		const novosLanches = pedido.lanche.filter(l => l.id !== lancheId);
 
-        return pedidoService.update(pedidoId, {
-            ...pedido,
-            lanche: novosLanches,
-        });
-    },
+		return pedidoService.update(pedidoId, {
+			...pedido,
+			lanche: novosLanches,
+		});
+	},
 };
 
 function calcularValorTotal(pedido: Pedido): number {
-    const valorIngressos = pedido.ingresso.reduce((total, ingresso) => total + ingresso.valorFinal, 0);
-    const valorLanches = pedido.lanche.reduce((total, lanche) => total + lanche.subtotal, 0);
-    return valorIngressos + valorLanches;
+	const valorIngressos = pedido.ingresso.reduce((total, ingresso) => total + ingresso.valorFinal, 0);
+	const valorLanches = pedido.lanche.reduce((total, lanche) => total + lanche.subtotal, 0);
+	return valorIngressos + valorLanches;
 }
 
