@@ -5,13 +5,18 @@ import type {IngressoFormData} from '../../../schemas/ingressoSchema';
 import {TipoIngresso} from '../../../models/Ingresso';
 import type {SessaoCompleta} from '../../../models/Sessao';
 import type {Pedido} from '../../../models/Pedido';
-import {Button} from '../../../components/Button';
 import {lancheComboService} from '../../../services/lancheComboService';
 import {pedidoService} from '../../../services/pedidoService';
 import {pedidoSchema} from '../../../schemas/pedidoSchema';
 import type {LancheCombo} from '../../../models/LancheCombo';
 import {salaService} from '../../../services/salaService';
 import type {Sala} from '../../../models/Sala';
+import {Modal} from '../../../components/Modal';
+import {SessionInfo} from '../../../components/SessionInfo';
+import {TicketQuantitySection} from '../../../components/TicketQuantitySection';
+import {ComboSelectionSection} from '../../../components/ComboSelectionSection';
+import {Button} from '../../../components/Button';
+import {Input} from '../../../components/Input';
 
 interface VenderIngressoModalProps {
 	sessao: SessaoCompleta;
@@ -156,8 +161,8 @@ export const VenderIngressoModal = ({
 		return calcularValorTotalIngressos() + calcularTotalCombos();
 	};
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-		const {name, value} = e.target;
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+		const {name, value} = e.target as HTMLInputElement | HTMLSelectElement;
 
 		if (name === 'quantidadeInteira') {
 			const num = Math.max(0, Number(value));
@@ -497,355 +502,197 @@ export const VenderIngressoModal = ({
 		}
 	};
 
-	if (!show) return null;
-
 	return (
-		<div
-			className="modal show d-block"
-			tabIndex={-1}
-			style={{backgroundColor: 'rgba(0,0,0,0.5)'}}
-		>
-			<div className="modal-dialog modal-lg">
-				<div className="modal-content">
-					<div className="modal-header">
-						<h5 className="modal-title">
-							<i className="bi bi-ticket-perforated me-2"></i>
-							{modo === 'editar' ? 'Editar Pedido' : 'Vender Ingresso'}
-						</h5>
-						<button
-							type="button"
-							className="btn-close"
-							onClick={handleClose}
-						></button>
+		<Modal
+			show={show}
+			title={modo === 'editar' ? 'Editar Pedido' : 'Vender Ingresso'}
+			icon="bi bi-ticket-perforated"
+			size="lg"
+			onClose={handleClose}
+			onSubmit={handleSubmit}
+			isSubmitting={isSubmitting}
+			footer={
+				<>
+					<Button
+						type="button"
+						label="Cancelar"
+						variant="secondary"
+						onClick={handleClose}
+						disabled={isSubmitting}
+						icon="bi bi-x"
+					/>
+					<div className="me-auto text-muted">
+						<small>
+							Total geral: <strong>R$ {calcularTotalGeral().toFixed(2)}</strong>
+						</small>
 					</div>
-					<form onSubmit={handleSubmit} onKeyDown={(e) => {
-						if (e.key === 'Enter') {
-							e.preventDefault();
-						}
-					}}>
-						<div className="modal-body" style={{maxHeight: '70vh', overflowY: 'auto'}}>
-							<div className="card mb-3">
-								<div className="card-header">
-									<h6 className="mb-0">
-										<i className="bi bi-info-circle me-2"></i>
-										Informações da Sessão
-									</h6>
-								</div>
-								<div className="card-body">
-									<div className="row">
-										<div className="col-md-6">
-											<p><strong>Filme:</strong> {sessao.filme?.titulo || 'N/A'}</p>
-										</div>
-										<div className="col-md-6">
-											<p><strong>Sala:</strong> {sessao.sala?.numero || 'N/A'}</p>
-										</div>
-									</div>
-									<p><strong>Horário:</strong> {new Date(sessao.horarioExibicao).toLocaleString('pt-BR')}</p>
-								</div>
-							</div>
+					<Button
+						type="submit"
+						label={isSubmitting ? 'Processando...' : (modo === 'editar' ? 'Salvar Alterações' : 'Confirmar Venda')}
+						variant="primary"
+						disabled={isSubmitting}
+						icon={modo === 'editar' ? 'bi bi-pencil' : 'bi bi-check'}
+					/>
+				</>
+			}
+		>
+			<SessionInfo sessao={sessao} />
 
-							<div className="card mb-3">
-								<div className="card-header">
-									<h6 className="mb-0">
-										<i className="bi bi-ticket me-2"></i>
-										Quantidade de Ingressos
-									</h6>
-								</div>
-								<div className="card-body">
-									<div className="row">
-										<div className="col-md-6 mb-3">
-											<label htmlFor="quantidadeInteira" className="form-label">Quantidade Inteira</label>
-											<input
-												id="quantidadeInteira"
-												name="quantidadeInteira"
-												type="number"
-												min={0}
-												className={`form-control ${errors.quantidadeInteira ? 'is-invalid' : ''}`}
-												value={quantidadeInteira}
-												onChange={handleChange}
-											/>
-											{errors.quantidadeInteira && (
-												<div className="text-danger small mt-1">
-													<i className="bi bi-exclamation-circle me-1"></i>
-													{errors.quantidadeInteira}
-												</div>
-											)}
-										</div>
-										<div className="col-md-6 mb-3">
-											<label htmlFor="quantidadeMeia" className="form-label">Quantidade Meia</label>
-											<input
-												id="quantidadeMeia"
-												name="quantidadeMeia"
-												type="number"
-												min={0}
-												className={`form-control ${errors.quantidadeMeia ? 'is-invalid' : ''}`}
-												value={quantidadeMeia}
-												onChange={handleChange}
-											/>
-											{errors.quantidadeMeia && (
-												<div className="text-danger small mt-1">
-													<i className="bi bi-exclamation-circle me-1"></i>
-													{errors.quantidadeMeia}
-												</div>
-											)}
-										</div>
-									</div>
-									{errors.quantidade && (
-										<div className="alert alert-danger">
-											<i className="bi bi-exclamation-circle me-1"></i>
-											{errors.quantidade}
-										</div>
-									)}
-								</div>
-							</div>
+			<TicketQuantitySection
+				quantidadeInteira={quantidadeInteira}
+				quantidadeMeia={quantidadeMeia}
+				onChangeInteira={(value) => {
+					setQuantidadeInteira(value);
+					const novoTotal = value + quantidadeMeia;
+					if (assentosSelecionados.length > novoTotal) {
+						setAssentosSelecionados(prev => prev.slice(0, novoTotal));
+					}
+					if (errors.quantidadeInteira) {
+						setErrors(prev => {
+							const newErrors = {...prev};
+							delete newErrors.quantidadeInteira;
+							return newErrors;
+						});
+					}
+				}}
+				onChangeMeia={(value) => {
+					setQuantidadeMeia(value);
+					const novoTotal = quantidadeInteira + value;
+					if (assentosSelecionados.length > novoTotal) {
+						setAssentosSelecionados(prev => prev.slice(0, novoTotal));
+					}
+					if (errors.quantidadeMeia) {
+						setErrors(prev => {
+							const newErrors = {...prev};
+							delete newErrors.quantidadeMeia;
+							return newErrors;
+						});
+					}
+				}}
+				errors={errors}
+			/>
 
-							<div className="card mb-3">
-								<div className="card-header">
-									<h6 className="mb-0">
-										<i className="bi bi-cash-coin me-2"></i>
-										Valores dos Ingressos
-									</h6>
-								</div>
-								<div className="card-body">
-									<div className="row">
-										<div className="col-md-6 mb-3">
-											<label htmlFor="valorInteira" className="form-label">Valor Inteira (R$)</label>
-											<input
-												id="valorInteira"
-												name="valorInteira"
-												type="number"
-												step="0.01"
-												className={`form-control ${errors.valorInteira ? 'is-invalid' : ''}`}
-												value={formData.valorInteira}
-												onChange={handleChange}
-												disabled={modo === 'editar'}
-											/>
-											{errors.valorInteira && (
-												<div className="text-danger small mt-1">
-													<i className="bi bi-exclamation-circle me-1"></i>
-													{errors.valorInteira}
-												</div>
-											)}
-										</div>
-										<div className="col-md-6 mb-3">
-											<label htmlFor="valorMeia" className="form-label">Valor Meia (R$)</label>
-											<input
-												id="valorMeia"
-												name="valorMeia"
-												type="number"
-												step="0.01"
-												className={`form-control ${errors.valorMeia ? 'is-invalid' : ''}`}
-												value={formData.valorMeia}
-												onChange={handleChange}
-												disabled={modo === 'editar'}
-											/>
-											{errors.valorMeia && (
-												<div className="text-danger small mt-1">
-													<i className="bi bi-exclamation-circle me-1"></i>
-													{errors.valorMeia}
-												</div>
-											)}
-										</div>
-									</div>
-									<div className="alert alert-info mb-0">
-										<strong>Valor Total (ingressos):</strong> R$ {calcularValorTotalIngressos().toFixed(2)}
-									</div>
-								</div>
-							</div>
-
-							<div className="card mb-3">
-								<div className="card-header">
-									<h6 className="mb-0">
-										<i className="bi bi-grid-3x3-gap me-2"></i>
-										Selecionar Assentos
-									</h6>
-								</div>
-								<div className="card-body">
-									<div className="mb-2">
-										<small className="text-muted">
-											Necessários: <strong>{totalAssentosNecessarios}</strong> • 
-											Selecionados: <strong>{assentosSelecionados.length}</strong>
-										</small>
-									</div>
-									{totalAssentosNecessarios === 0 && (
-										<div className="alert alert-warning mb-0">
-											<i className="bi bi-info-circle me-2"></i>
-											Informe quantidades de ingressos para habilitar a seleção de assentos.
-										</div>
-									)}
-									{totalAssentosNecessarios > 0 && (
-										<>
-											{(() => {
-												const {rows, cols} = getGridConfig();
-												return (
-													<div className="d-flex flex-column gap-2">
-														{Array.from({length: rows}, (_, r) => (
-															<div key={`row-${r + 1}`} className="d-flex flex-wrap gap-2">
-																{Array.from({length: cols}, (_, c) => {
-																	const linha = r + 1;
-																	const coluna = c + 1;
-																	const key = `${linha}-${coluna}`;
-																	const ocupado = ocupadosSet.has(key);
-																	const selecionado = assentosSelecionados.some(a => a.assentoLinha === linha && a.assentoColuna === coluna);
-																	const ocupadosDoPedido = new Set((pedidoInicial?.ingresso || []).map(i => `${i.assentoLinha}-${i.assentoColuna}`));
-																	const isMine = modo === 'editar' && pedidoInicial ? ocupadosDoPedido.has(key) : false;
-																	const btnClass = ocupado
-																		? (selecionado ? 'btn btn-sm btn-success' : 'btn btn-sm btn-secondary')
-																		: (selecionado ? 'btn btn-sm btn-success' : 'btn btn-sm btn-outline-secondary');
-																	return (
-																		<button
-																			type="button"
-																			key={`seat-${key}`}
-																			className={btnClass}
-																			disabled={totalAssentosNecessarios === 0 || (ocupado && !(modo === 'editar' && isMine))}
-																			onClick={() => toggleAssento(linha, coluna)}
-																		>
-																			{linha}-{coluna}
-																		</button>
-																	);
-																})}
-															</div>
-														))}
-													</div>
-												);
-											})()}
-											{errors.assentos && (
-												<div className="text-danger small mt-2">
-													<i className="bi bi-exclamation-circle me-1"></i>
-													{errors.assentos}
-												</div>
-											)}
-										</>
-									)}
-								</div>
-							</div>
-
-							<div className="card mb-3">
-								<div className="card-header">
-									<h6 className="mb-0">
-										<i className="bi bi-bag me-2"></i>
-										Selecionar Combos
-									</h6>
-								</div>
-								<div className="card-body">
-									{lanchesDisponiveis.length === 0 ? (
-										<div className="alert alert-secondary mb-0">
-											Nenhum combo disponível.
-										</div>
-									) : (
-										<div className="row mb-3">
-											{lanchesDisponiveis.map((lanche) => (
-												<div key={lanche.id} className="col-md-6 mb-3">
-													<div className="card h-100">
-														<div className="card-body">
-															<h6 className="card-title">{lanche.nome}</h6>
-															<p className="card-text small text-muted">{lanche.descricao}</p>
-															<p className="card-text">
-																<strong>R$ {lanche.valorUnitario.toFixed(2)}</strong>
-																<small className="text-muted ms-2">
-																	x{lanche.qtUnidade} =
-																	R$ {lanche.subtotal.toFixed(2)}
-																</small>
-															</p>
-															<p className="card-text">
-																<small
-																	className={lanche.qtDisponivel! <= 0 ? 'text-danger' : 'text-muted'}>
-																	Disponíveis: {lanche.qtDisponivel ?? lanche.qtUnidade}
-																</small>
-															</p>
-															<button
-																type="button"
-																className="btn btn-sm btn-primary w-100"
-																disabled={(lanche.qtDisponivel ?? lanche.qtUnidade) <= 0}
-																onClick={() => setLanchesSelecionados(prev => [...prev, {
-																	...lanche,
-																	qtUnidade: 1,
-																	subtotal: lanche.valorUnitario
-																}])}
-															>
-																<i className="bi bi-plus-circle me-1"></i>
-																Adicionar
-															</button>
-														</div>
-													</div>
-												</div>
-											))}
-										</div>
-									)}
-
-									<div className="mt-3">
-										<h6>
-											<i className="bi bi-check-circle me-2"></i>
-											Combos Selecionados ({lanchesSelecionados.length})
-										</h6>
-										{lanchesSelecionados.length === 0 ? (
-											<div className="alert alert-secondary">
-												<small>Nenhum combo adicionado.</small>
-											</div>
-										) : (
-											<ul className="list-group mb-3">
-												{lanchesSelecionados.map((lanche, index) => (
-													<li key={`lanche-${lanche.id}-${index}`}
-														className="list-group-item d-flex justify-content-between align-items-center">
-														<div>
-															<strong>{lanche.nome}</strong> - {lanche.descricao}
-															<br/>
-															<small className="text-muted">
-																R$ {lanche.valorUnitario.toFixed(2)} x {lanche.qtUnidade} =
-																R$ {lanche.subtotal.toFixed(2)}
-															</small>
-														</div>
-														<button
-															type="button"
-															className="btn btn-sm btn-danger"
-															onClick={() => setLanchesSelecionados(prev => prev.filter((_, i) => i !== index))}
-														>
-															<i className="bi bi-trash"></i>
-														</button>
-													</li>
-												))}
-											</ul>
-										)}
-										{lanchesSelecionados.length > 0 && (
-											<div className="alert alert-info mb-0">
-												<strong>Total dos combos:</strong> R$ {calcularTotalCombos().toFixed(2)}
-											</div>
-										)}
-										{errorsCombos && (
-											<div className="alert alert-danger mt-2 mb-0">
-												<i className="bi bi-exclamation-circle me-1"></i>
-												{errorsCombos}
-											</div>
-										)}
-									</div>
-								</div>
-							</div>
+			<div className="card mb-3">
+				<div className="card-header">
+					<h6 className="mb-0">
+						<i className="bi bi-cash-coin me-2"></i>
+						Valores dos Ingressos
+					</h6>
+				</div>
+				<div className="card-body">
+					<div className="row">
+						<div className="col-md-6 mb-3">
+							<Input
+								id="valorInteira"
+								name="valorInteira"
+								label="Valor Inteira (R$)"
+								type="number"
+								value={formData.valorInteira}
+								onChange={handleChange}
+								hasError={!!errors.valorInteira}
+								errorMessage={errors.valorInteira}
+								disabled={modo === 'editar'}
+							/>
 						</div>
-						<div className="modal-footer">
-							<button
-								type="button"
-								className="btn btn-secondary"
-								onClick={handleClose}
-								disabled={isSubmitting}
-							>
-								Cancelar
-							</button>
-							<div className="me-auto text-muted">
-								<small>
-									Total geral: <strong>R$ {calcularTotalGeral().toFixed(2)}</strong>
-								</small>
-							</div>
-							<button
-								type="submit"
-								className="btn btn-primary"
-								disabled={isSubmitting}
-							>
-								{isSubmitting ? 'Processando...' : (modo === 'editar' ? 'Salvar Alterações' : 'Confirmar Venda')}
-							</button>
+						<div className="col-md-6 mb-3">
+							<Input
+								id="valorMeia"
+								name="valorMeia"
+								label="Valor Meia (R$)"
+								type="number"
+								value={formData.valorMeia}
+								onChange={handleChange}
+								hasError={!!errors.valorMeia}
+								errorMessage={errors.valorMeia}
+								disabled={modo === 'editar'}
+							/>
 						</div>
-					</form>
+					</div>
+					<div className="alert alert-info mb-0">
+						<strong>Valor Total (ingressos):</strong> R$ {calcularValorTotalIngressos().toFixed(2)}
+					</div>
 				</div>
 			</div>
-		</div>
+
+			<div className="card mb-3">
+				<div className="card-header">
+					<h6 className="mb-0">
+						<i className="bi bi-grid-3x3-gap me-2"></i>
+						Selecionar Assentos
+					</h6>
+				</div>
+				<div className="card-body">
+					<div className="mb-2">
+						<small className="text-muted">
+							Necessários: <strong>{totalAssentosNecessarios}</strong> • 
+							Selecionados: <strong>{assentosSelecionados.length}</strong>
+						</small>
+					</div>
+					{totalAssentosNecessarios === 0 && (
+						<div className="alert alert-warning mb-0">
+							<i className="bi bi-info-circle me-2"></i>
+							Informe quantidades de ingressos para habilitar a seleção de assentos.
+						</div>
+					)}
+					{totalAssentosNecessarios > 0 && (
+						<>
+							{(() => {
+								const {rows, cols} = getGridConfig();
+								return (
+									<div className="d-flex flex-column gap-2">
+										{Array.from({length: rows}, (_, r) => (
+											<div key={`row-${r + 1}`} className="d-flex flex-wrap gap-2">
+												{Array.from({length: cols}, (_, c) => {
+													const linha = r + 1;
+													const coluna = c + 1;
+													const key = `${linha}-${coluna}`;
+													const ocupado = ocupadosSet.has(key);
+													const selecionado = assentosSelecionados.some(a => a.assentoLinha === linha && a.assentoColuna === coluna);
+													const ocupadosDoPedido = new Set((pedidoInicial?.ingresso || []).map(i => `${i.assentoLinha}-${i.assentoColuna}`));
+													const isMine = modo === 'editar' && pedidoInicial ? ocupadosDoPedido.has(key) : false;
+													const btnClass = ocupado
+														? (selecionado ? 'btn btn-sm btn-success' : 'btn btn-sm btn-secondary')
+														: (selecionado ? 'btn btn-sm btn-success' : 'btn btn-sm btn-outline-secondary');
+													return (
+														<button
+															type="button"
+															key={`seat-${key}`}
+															className={btnClass}
+															disabled={totalAssentosNecessarios === 0 || (ocupado && !(modo === 'editar' && isMine))}
+															onClick={() => toggleAssento(linha, coluna)}
+														>
+															{linha}-{coluna}
+														</button>
+													);
+												})}
+											</div>
+										))}
+									</div>
+								);
+							})()}
+							{errors.assentos && (
+								<div className="text-danger small mt-2">
+									<i className="bi bi-exclamation-circle me-1"></i>
+									{errors.assentos}
+								</div>
+							)}
+						</>
+					)}
+				</div>
+			</div>
+
+			<ComboSelectionSection
+				lanchesDisponiveis={lanchesDisponiveis}
+				lanchesSelecionados={lanchesSelecionados}
+				onAddLanche={(lanche) => setLanchesSelecionados(prev => [...prev, {
+					...lanche,
+					qtUnidade: 1,
+					subtotal: lanche.valorUnitario
+				}])}
+				onRemoveLanche={(index) => setLanchesSelecionados(prev => prev.filter((_, i) => i !== index))}
+				totalCombos={calcularTotalCombos()}
+				error={errorsCombos || undefined}
+			/>
+		</Modal>
 	);
 };
