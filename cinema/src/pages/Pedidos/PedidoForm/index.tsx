@@ -185,8 +185,7 @@ export const PedidoForm = () => {
 													<div className="text-danger small mt-1">{errors.qtUnidade}</div>
 												)}
 												<div className="alert alert-info mt-2">
-													<strong>Total do
-														combo:</strong> R$ {(Number(lancheFormData.valorUnitario || 0) * Number(lancheFormData.qtUnidade || 0)).toFixed(2)}
+													<strong>Total do combo:</strong> R$ {(Number(lancheFormData.valorUnitario || 0) * Number(lancheFormData.qtUnidade || 0)).toFixed(2)}
 												</div>
 											</div>
 											<div className="d-flex gap-2">

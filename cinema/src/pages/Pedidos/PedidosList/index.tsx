@@ -3,10 +3,18 @@ import {Link} from 'react-router-dom';
 import {pedidoService} from '../../../services/pedidoService';
 import {ingressoService} from '../../../services/ingressoService';
 import type {Pedido} from '../../../models/Pedido';
+import type {Ingresso} from '../../../models/Ingresso';
+import {sessaoService} from '../../../services/sessaoService';
+import type {SessaoCompleta} from '../../../models/Sessao';
+import {VenderIngressoModal} from '../../Sessoes/VenderIngressoModal';
 
 export const PedidosList = () => {
-	const [pedidos, setPedidos] = useState<Pedido[]>([]);
-	const [loading, setLoading] = useState(true);
+    const [pedidos, setPedidos] = useState<Pedido[]>([]);
+    const [ingressosSemPedido, setIngressosSemPedido] = useState<Ingresso[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [selectedPedido, setSelectedPedido] = useState<Pedido | null>(null);
+    const [selectedSessao, setSelectedSessao] = useState<SessaoCompleta | null>(null);
+    const [showModal, setShowModal] = useState(false);
 
 	useEffect(() => {
 		loadPedidos();
@@ -14,8 +22,22 @@ export const PedidosList = () => {
 
     const loadPedidos = async () => {
         try {
-            const data = await pedidoService.getAll();
-            setPedidos(data);
+            const [pedidosData, ingressosData] = await Promise.all([
+                pedidoService.getAll(),
+                ingressoService.getAll(),
+            ]);
+            
+            setPedidos(pedidosData);
+            
+            const ingressosEmPedidos = new Set<string>();
+            pedidosData.forEach(pedido => {
+                pedido.ingresso?.forEach(ing => {
+                    if (ing.id) ingressosEmPedidos.add(String(ing.id));
+                });
+            });
+            
+            const ingressosSemAssociacao = ingressosData.filter(ing => !ingressosEmPedidos.has(String(ing.id)));
+            setIngressosSemPedido(ingressosSemAssociacao);
         } catch (error: any) {
             console.error('Erro ao carregar pedidos:', error);
 			if (error.request) {
@@ -28,21 +50,37 @@ export const PedidosList = () => {
 		}
     };
 
+    const openEditModal = async (pedido: Pedido) => {
+        try {
+            const sessaoId = pedido.ingresso?.[0]?.sessaoId;
+            if (!sessaoId) {
+                alert('Este pedido não possui sessão associada.');
+                return;
+            }
+            const sessoes = await sessaoService.getAll();
+            const sessao = sessoes.find(s => String(s.id) === String(sessaoId));
+            if (!sessao) {
+                alert('Sessão do pedido não encontrada.');
+                return;
+            }
+            setSelectedPedido(pedido);
+            setSelectedSessao(sessao);
+            setShowModal(true);
+        } catch (e) {
+            console.error(e);
+            alert('Falha ao abrir edição do pedido.');
+        }
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setSelectedPedido(null);
+        setSelectedSessao(null);
+    };
+
     const handleDelete = async (id: number | string) => {
         if (window.confirm('Tem certeza que deseja excluir este pedido?')) {
             try {
-                const pedido = pedidos.find(p => String(p.id) === String(id));
-                if (pedido && Array.isArray(pedido.ingresso)) {
-                    for (const i of pedido.ingresso) {
-                        if (i.id) {
-                            try {
-                                await ingressoService.delete(i.id);
-                            } catch (err) {
-                                console.error('Falha ao excluir ingresso associado:', err);
-                            }
-                        }
-                    }
-                }
                 await pedidoService.delete(id);
                 await loadPedidos();
             } catch (error: any) {
@@ -56,30 +94,54 @@ export const PedidosList = () => {
                 }
             }
         }
-	};
+    };
 
+    const handleAssociarIngresso = async (ingresso: Ingresso) => {
+        try {
+            const sessoes = await sessaoService.getAll();
+            const sessao = sessoes.find(s => String(s.id) === String(ingresso.sessaoId));
+            if (!sessao) {
+                alert('Sessão do ingresso não encontrada.');
+                return;
+            }
+            
+            const novoPedido: Omit<Pedido, 'id' | 'valorTotal'> = {
+                ingresso: [ingresso],
+                lanche: [],
+                qtInteira: ingresso.tipo === 'Inteira' ? 1 : 0,
+                qtMeia: ingresso.tipo === 'Meia' ? 1 : 0,
+            };
+            
+            await pedidoService.create(novoPedido);
+            await loadPedidos();
+            alert('Ingresso associado a um novo pedido com sucesso!');
+        } catch (error: any) {
+            console.error('Erro ao criar pedido:', error);
+            alert('Erro ao associar ingresso a pedido.');
+        }
+    };
 
 	if (loading) {
 		return <div className="text-center mt-5">Carregando...</div>;
 	}
 
-	return (
-		<div className="container mt-4">
+    return (
+        <div className="container mt-4">
 			<div className="d-flex justify-content-between align-items-center mb-4">
 				<h1>
 					<i className="bi bi-cart me-2"></i>
 					Pedidos
 				</h1>
-				<Link to="/pedidos/novo" className="btn btn-primary">
-					<i className="bi bi-sliders me-2"></i>
-					Gerenciar Combos
-				</Link>
-			</div>
+                <Link to="/combos" className="btn btn-primary">
+                    <i className="bi bi-bag me-2"></i>
+                    Combos
+                </Link>
+            </div>
 
-			{pedidos.length === 0 ? (
+			{pedidos.length === 0 && ingressosSemPedido.length === 0 ? (
 				<div className="alert alert-info">
 					<i className="bi bi-info-circle me-2"></i>
-					Nenhum pedido cadastrado ainda.
+					Nenhum pedido ou ingresso cadastrado ainda.
 				</div>
 			) : (
 				<div className="row">
@@ -200,28 +262,97 @@ export const PedidosList = () => {
 											</div>
 										)}
 									</div>
-									<div className="mt-3">
-										<h6 className="text-primary">
-											<i className="bi bi-currency-dollar me-1"></i>
-											Valor Total: R$ {pedido.valorTotal.toFixed(2)}
-										</h6>
-									</div>
-								</div>
-								<div className="card-footer">
-									<button
-										className="btn btn-danger btn-sm"
-										onClick={() => pedido.id && handleDelete(pedido.id)}
-									>
-										<i className="bi bi-trash me-1"></i>
-										Excluir
-									</button>
+								<div className="mt-3">
+									<h6 className="text-primary">
+										<i className="bi bi-currency-dollar me-1"></i>
+										Valor Total: R$ {pedido.valorTotal.toFixed(2)}
+									</h6>
 								</div>
 							</div>
+                                <div className="card-footer d-flex justify-content-between">
+                                    <button className="btn btn-outline-primary btn-sm" onClick={() => openEditModal(pedido)}>
+                                        <i className="bi bi-pencil-square me-1"></i>
+                                        Editar
+                                    </button>
+                                    <button
+                                        className="btn btn-danger btn-sm"
+                                        onClick={() => pedido.id && handleDelete(pedido.id)}
+                                    >
+                                        <i className="bi bi-trash me-1"></i>
+                                        Excluir
+                                    </button>
+                                </div>
 						</div>
-					))}
-				</div>
-			)}
-		</div>
-	);
+					</div>
+				))}
+
+				{ingressosSemPedido.length > 0 && (
+					<>
+						<div className="col-12 mt-4 mb-4">
+							<h4>
+								<i className="bi bi-exclamation-triangle me-2"></i>
+								Ingressos sem Pedido
+							</h4>
+							<p className="text-muted">Os ingressos abaixo não estão associados a nenhum pedido. Clique em "Criar Pedido" para associá-los.</p>
+						</div>
+						{ingressosSemPedido.map((ingresso) => (
+							<div key={ingresso.id} className="col-md-6 mb-4">
+								<div className="card h-100 border-warning">
+									<div className="card-body">
+										<h5 className="card-title">
+											<i className="bi bi-ticket-perforated me-2"></i>
+											Ingresso #{ingresso.id}
+										</h5>
+										<ul className="list-unstyled">
+											<li>
+												<small className="text-muted">
+													<strong>Tipo:</strong> {ingresso.tipo}
+												</small>
+											</li>
+											<li>
+												<small className="text-muted">
+													<strong>Assento:</strong> {ingresso.assentoLinha}-{ingresso.assentoColuna}
+												</small>
+											</li>
+											<li>
+												<small className="text-muted">
+													<strong>Sessão ID:</strong> {ingresso.sessaoId}
+												</small>
+											</li>
+											<li>
+												<small className="fw-bold text-primary">
+													<strong>Valor:</strong> R$ {ingresso.valorFinal.toFixed(2)}
+												</small>
+											</li>
+										</ul>
+									</div>
+									<div className="card-footer">
+										<button 
+											className="btn btn-success btn-sm w-100"
+											onClick={() => handleAssociarIngresso(ingresso)}
+										>
+											<i className="bi bi-plus-circle me-1"></i>
+											Criar Pedido
+										</button>
+									</div>
+								</div>
+							</div>
+						))}
+					</>
+				)}
+			</div>
+		)}
+            {selectedPedido && selectedSessao && (
+                <VenderIngressoModal
+                    sessao={selectedSessao}
+                    show={showModal}
+                    onClose={closeModal}
+                    onSuccess={loadPedidos}
+                    pedidoInicial={selectedPedido}
+                    modo="editar"
+                />
+            )}
+        </div>
+    );
 };
 

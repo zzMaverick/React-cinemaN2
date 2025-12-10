@@ -97,7 +97,6 @@ export const SessaoForm = () => {
 			return;
 		}
 
-
 		try {
 			const dataToValidate = {
 				horarioExibicao: formData.horarioExibicao,

@@ -7,7 +7,7 @@ export const lancheComboService = {
 		return response.data;
 	},
 
-	getById: async (id: number): Promise<LancheCombo> => {
+	getById: async (id: number | string): Promise<LancheCombo> => {
 		const response = await api.get<LancheCombo>(`/lancheCombos/${id}`);
 		return response.data;
 	},

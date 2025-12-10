@@ -46,16 +46,22 @@ export const Nav = () => {
 									Sessões
 								</Link>
 							</li>
-							<li className="nav-item">
-								<Link to="/pedidos" className="nav-link">
-									<i className="bi bi-cart me-1"></i>
-									Pedidos
-								</Link>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</>
-	);
+                            <li className="nav-item">
+                                <Link to="/pedidos" className="nav-link">
+                                    <i className="bi bi-cart me-1"></i>
+                                    Pedidos
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/combos" className="nav-link">
+                                    <i className="bi bi-bag me-1"></i>
+                                    Combos
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </>
+    );
 };

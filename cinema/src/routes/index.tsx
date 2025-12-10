@@ -7,7 +7,8 @@ import {SalaForm} from "../pages/Salas/SalaForm";
 import {SessoesList} from "../pages/Sessoes/SessoesList";
 import {SessaoForm} from "../pages/Sessoes/SessaoForm";
 import {PedidosList} from "../pages/Pedidos/PedidosList";
-import {PedidoForm} from "../pages/Pedidos/PedidoForm";
+import {LancheCombosList} from "../pages/Combos/LancheCombosList";
+import {LancheComboForm} from "../pages/Combos/LancheComboForm";
 
 export const AppRouter = () => {
     return (
@@ -24,7 +25,9 @@ export const AppRouter = () => {
                 <Route path="/sessoes/novo" element={<SessaoForm/>}/>
                 <Route path="/sessoes/:id/editar" element={<SessaoForm/>}/>
                 <Route path="/pedidos" element={<PedidosList/>}/>
-                <Route path="/pedidos/novo" element={<PedidoForm/>}/>
+                <Route path="/combos" element={<LancheCombosList/>}/>
+                <Route path="/combos/novo" element={<LancheComboForm/>}/>
+                <Route path="/combos/:id/editar" element={<LancheComboForm/>}/>
             </Routes>
         </>
     );

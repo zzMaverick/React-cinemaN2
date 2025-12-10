@@ -231,8 +231,7 @@ export const FilmeForm = () => {
 						</div>
 
 						<div className="mb-3">
-							<label htmlFor="dataInicioExibicao" className="form-label">Data de Início de
-								Exibição</label>
+							<label htmlFor="dataInicioExibicao" className="form-label">Data de Início de Exibição</label>
 							<input
 								id="dataInicioExibicao"
 								name="dataInicioExibicao"
