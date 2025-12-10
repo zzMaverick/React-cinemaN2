@@ -7,8 +7,9 @@ interface IInputProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     hasError?: boolean;
 }
+
 const idCapitalized = (id: string) => id.charAt(0).toUpperCase() + id.slice(1);
-export const Input = ({ id, name, type = 'text', placeholder, value, onChange, hasError}: IInputProps) => {
+export const Input = ({id, name, type = 'text', placeholder, value, onChange, hasError}: IInputProps) => {
     return (
         <>
             <label htmlFor={id} className="form-label">{idCapitalized(id)}</label>

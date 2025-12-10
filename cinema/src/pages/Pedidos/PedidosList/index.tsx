@@ -57,8 +57,8 @@ export const PedidosList = () => {
           Pedidos
         </h1>
         <Link to="/pedidos/novo" className="btn btn-primary">
-          <i className="bi bi-plus-circle me-2"></i>
-          Novo Pedido
+          <i className="bi bi-sliders me-2"></i>
+          Gerenciar Combos
         </Link>
       </div>
 

@@ -4,11 +4,12 @@ interface IButtonProps {
     variant?: 'primary' | 'secondary';
     onClick?: () => void;
 }
-export const Button = ({type = 'button',label,variant = 'primary', onClick }: IButtonProps
+
+export const Button = ({type = 'button', label, variant = 'primary', onClick}: IButtonProps
 ) => {
     return (
         <>
-            <button className={"btn btn-"+variant} type={type} onClick={onClick}>{label}</button>
+            <button className={"btn btn-" + variant} type={type} onClick={onClick}>{label}</button>
         </>
     );
 }
